@@ -1,0 +1,106 @@
+ # Conky settings #
+background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+text_buffer_size 2048
+#imlib_cache_size 0
+
+temperature_unit fahrenheit
+
+# Window specifications #
+own_window yes
+own_window_type normal
+own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 255
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager,below
+#own_window_colour bl
+
+border_inner_margin 0
+border_outer_margin 5
+
+minimum_size 250 300
+maximum_width 250
+
+alignment tr
+gap_x 10
+gap_y 35
+
+# Graphics settings #
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+
+# Text settings #
+use_xft yes
+xftfont Expansiva:size=9
+xftalpha 1.0
+
+uppercase no
+
+temperature_unit celsius
+#Couleurs
+  default_color FFFFFF 		#Couleur par défaut
+  default_shade_color 333333	#Couleur des ombres
+  default_outline_color black	#Couleur des contours
+ #---
+  color1 darkgray 		#Gris
+  color2 0ABFFF 		#Rouge
+  color3 0ABFFF 		#Bleu
+
+
+TEXT
+${color2}${font ConkySymbols:pixelsize=25}USO${color2}${font D3 Euronism:size=9}${alignc} LinuxMint-Petra(16) ${font}
+${font StyleBats:size=16}l${font}${color2}  [SYSTEM] ${hr 2}
+${offset 35}${color darkgray}System Name: ${alignr}gameFace22-hackop
+${offset 35}${color darkgray}Kernel:${alignr}${kernel}
+${offset 35}${color darkgray}Up time: ${alignr}${uptime}
+${offset 35}${color darkgray}Battery:${alignr}${battery}
+${offset 35}${color darkgray}Process running:${alignr}${processes}
+${color2}${font StyleBats:size=16}a${font}   [CPU] ${hr 2} 
+${offset 35}${color1}First Core:${color3}${platform coretemp.0 temp 1}°C${goto 170}${color2}${cpu cpu1}%${color1}${alignr}${color3}${freq_g 1}GHz
+${offset 35}${color1}${cpugraph cpu1 25,0}
+${offset 35}${color1}Second:${color3}${platform coretemp.0 temp 1}°C${goto 170}${color2}${cpu cpu2}%${color1}${alignr}${color3}${freq_g 2}GHz
+${offset 35}${color1}${cpugraph cpu2 25,0 }
+${color2}${font StyleBats:size=16}p${font}  [MEMORY] ${hr 2}
+${offset 35}${color1}RAM  : ${color3}$memperc %${goto 120}${color1}${membar 9}
+${offset 35}${color1}Swap:${color3}$swapperc %${goto 120}${color1}${swapbar 9}
+${color2}${font StyleBats:size=16}e${font}  [Hard Drive] ${hr 2} 
+${offset 35}${color1}/root${goto 120}Used${color3}${fs_used_perc /}%${alignr}${color1}Free ${color2}${fs_free /}
+${offset 35}${color1}${fs_bar 9 /}
+${offset 35}${color1}/home${goto 120}Used ${color3}${fs_used_perc /home}%${alignr}${color1}Free ${color2}${fs_free /home}
+${offset 35}${color1}${fs_bar 9 /home}
+${color2}${font StyleBats:size=16}n${font} ${if_existing /proc/net/route ppp0}[CONNECTED TO INTERNET]${hr 2} 
+${offset 35}${color1}Type : ${color darkgray}${alignr}${if_up ppp0}ppp0 ${else} eth0 ${endif}
+${offset 35}${color1}Name : ${alignr} Tata Photon+${else}[Network Disconnected] ${hr 2}
+${offset 35}${color1}Type :${alignr} unknown
+${offset 35}${color1}Name :${alignr} unknown${endif}
+${color2}${font StyleBats:size=16}y${font} [Address IP] ${if_existing /proc/net/route ppp0}${hr 2}
+${offset 35}${color1}Loc. : ${alignr}${addr ppp0}
+${offset 35}${color1}Pas. :             ${gw_ip}
+${offset 35}${color1}Pub. :              xxx.xxx.xxx${execi 60 wget 
+www.whatismyip.com/automation/n09230945.asp -O - -q}${else}
+${offset 35}${color1}Loc. :     xxx.xxx.xxx.xxx
+${offset 35}${color1}Pas. :     xxx.xxx.xxx.xxx
+${offset 35}${color1}Pub. :     xxx.xxx.xxx.xxx${endif}
+${offset 35}VPN:${if_up tun1}${alignr}Connection Secure:)${else}${alignr}Not Connected :($endif
+${offset 35}Tor Bridge:${alignr}Not Connected :(
+${offset 35}VPN-B Pwd:${alignr}${execi 10 /home/gameface22/conky-manager/password.sh}
+${color 0ABFFF}${font Conky Symbols:size=16}C${font} [GMAIL INBOX]${hr 2}
+${offset 35}${color darkgray}Inbox:${alignr}${color darkgray}${execi 10 /home/gameface22/conky-manager/mail.sh}
+${color2}${font StyleBats:size=16}h ${font}[C*US PLAYER] ${hr 2} 
+${execi 10 /home/gameface22/cmus.sh}
+${color2}${font StyleBats:size=16}z${font}[NO. OF OPEN PORTS] ${hr 2}
+${offset 35}${color1}Open :${alignr} ${tcp_portmon 1 65535 count}
+
+
+
