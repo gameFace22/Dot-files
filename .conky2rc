@@ -6,6 +6,7 @@ net_avg_samples		2
 double_buffer		yes
 no_buffers		yes
 text_buffer_size	1024
+sssss
 
 # — WINDOW — #
 own_window		yes
